@@ -47,33 +47,43 @@ class Game():
     # reset total
     self._total_score = 0
 
-    # define switches and constants
-    switch = 1
+    # switch:
+    # a strike is a single item frame; if it has an odd
+    # list index, the next frame will start on even
+    switch = 2
     last_index = len(self._scores) - 1
+    cur_frame = 1
 
     for i, cur in enumerate(self._scores):
-      # skip this iteration if not at start of frame
-      if i > 0 and i % 2:
+      # skip this iteration if not at start of frame:
+      # logical XOR with a switch tracks whether the start
+      # of the frame should be on even or odd list indices
+      if i > 0 and bool(i % 2) != bool(switch % 2):
         continue
-      # skip last value because it should not be scored
-      if last_index - i <= 0:
-        continue
+      if cur == 10:
+        switch = 1 if switch == 2 else 2
 
       # assign by frame: [cur,nxt] [trd,lst]
-      if cur == 10:             nxt = 0
-      else:                     nxt = self._scores[i+1]
-      if last_index - i >= 2:   trd = self._scores[i+2]
-      else:                     trd = 0
-      if last_index - i >= 3:   lst = self._scores[i+3]
-      else:                     lst = 0
+      if cur == 10:
+        nxt = 0
+        trd = self._scores[i+1] if last_index - i >= 1 else 0
+        lst = self._scores[i+2] if last_index - i >= 2 else 0
+      elif cur != 10:
+        nxt = self._scores[i+1]
+        trd = self._scores[i+2] if last_index - i >= 2 else 0
+        lst = self._scores[i+3] if last_index - i >= 3 else 0
 
       # score *this* frame according to rules
-      if cur == 10: # strike
+      if cur == 10:          # strike
         self._total_score += cur + nxt + trd + lst
-      elif cur + nxt == 10: # spare
+      elif cur + nxt == 10:  # spare
         self._total_score += cur + nxt + trd
-      else: # open frame
+      else:                  # open frame
         self._total_score += cur + nxt
+
+      # avoid end of game edge cases
+      if cur_frame == 10: break
+      cur_frame += 1
 
     self._scored = True
     return self._total_score
