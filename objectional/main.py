@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 
-class Game():
+from bowling_scorer import Game
+import pdb
 
-  _scores = []
-
-  def __init__(self,raw_scores):
-    for score in raw_scores:
-      _scores.append(int(score))
-
-  def score(self):
-    # score code goes here
-    return 1
+pdb.set_trace()
+game = [9,0, 8,1, 7,2, 6,3, 5,4, 4,5, 3,6, 2,7, 1,8, 5,4]
+expected = 90
+actual = Game(game).score()

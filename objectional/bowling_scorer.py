@@ -53,19 +53,18 @@ class Game():
 
     for i, cur in enumerate(self._scores):
       # skip this iteration if not at start of frame
-      if not i % 2:
+      if i > 0 and i % 2:
         continue
       # skip last value because it should not be scored
-      if i == last_index:
+      if last_index - i <= 0:
         continue
 
       # assign by frame: [cur,nxt] [trd,lst]
       if cur == 10:             nxt = 0
-      elif last_index - i >= 1: nxt = self._scores[i+1]
-      else:                     nxt = 0
-      if   last_index - i >= 2: trd = self._scores[i+2]
+      else:                     nxt = self._scores[i+1]
+      if last_index - i >= 2:   trd = self._scores[i+2]
       else:                     trd = 0
-      if   last_index - i >= 3: lst = self._scores[i+3]
+      if last_index - i >= 3:   lst = self._scores[i+3]
       else:                     lst = 0
 
       # score *this* frame according to rules
