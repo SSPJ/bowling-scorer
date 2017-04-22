@@ -10,7 +10,9 @@ class Game():
       Atributes: list _scores, int _total_score, bool _scored '''
 
   def __init__(self,raw_scores):
-    set_raw_scores(raw_scores)
+    self._scores = []
+    self._scored = False
+    self.set_raw_scores(raw_scores)
 
 ## Getters and setters are not idiomatic in python, but
 ## we need an isolated copy of the integer list and
@@ -18,7 +20,7 @@ class Game():
 
 ## int() will raise a VaueError on a non-numeric score
 
-  def set_raw_scores(raw_scores):
+  def set_raw_scores(self,raw_scores):
     ''' Parameters: list raw_score
         Throws: IndexError, ValueError '''
     # data validation
@@ -35,7 +37,7 @@ class Game():
     self._scored = False
 
   def get_raw_scores(self):
-    return _scores
+    return self._scores
 
   def score(self):
     # don't recalc if total is up-to-date

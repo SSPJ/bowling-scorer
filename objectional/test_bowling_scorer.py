@@ -1,27 +1,30 @@
 #!/usr/bin/env python3
 
-import bowling_scorer
+from bowling_scorer import Game
+import pytest
 
 ### create game ###
 
 def test_new_game():
-  #a_game = Game()
-  #assert(isinstance(a_game,Game))
-  assert(1)
+  a_game = Game([10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10])
+  assert isinstance(a_game,Game)
 
 def test_new_game_with_too_many_entries():
-  assert(0)
+  with pytest.raises(IndexError):
+    a_game = Game([0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0])
 
-def test_new_game_with_too_few_entries():
-  assert(0)
+def test_new_game_with_integer_out_of_bounds():
+  with pytest.raises(ValueError):  
+    a_game = Game([10, 11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10])
 
 def test_new_game_with_not_integers():
-  assert(0)
+  with pytest.raises(ValueError):
+    a_game = Game([10, 'a', 10, 10, 10, 10, 10, 10, 10, 10, 10, 10])
 
 ### score game ###
 
 def test_all_gutter_balls():
-  game = [0,0, 0,0, 0,0, 0,0, 0,0]
+  game = [0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0]
   expected = 0
   assert(0)
 
