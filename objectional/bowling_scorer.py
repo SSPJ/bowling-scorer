@@ -24,7 +24,7 @@ class Game():
     ''' Parameters: list raw_score
         Throws: IndexError, ValueError '''
     # data validation
-    if len(raw_scores) > 21:
+    if not raw_scores or len(raw_scores) > 21:
       raise IndexError
     for score in raw_scores:
       # data validation
@@ -42,8 +42,39 @@ class Game():
   def score(self):
     # don't recalc if total is up-to-date
     if self._scored == True:
-      return _total_score
-    # make sure that _scores is not null
-    # score code goes here
+      return self._total_score
+
+    # reset total
+    self._total_score = 0
+
+    # define switches and constants
+    switch = 1
+    last_index = len(self._scores) - 1
+
+    for i, cur in enumerate(self._scores):
+      # skip this iteration if not at start of frame
+      if not i % 2:
+        continue
+      # skip last value because it should not be scored
+      if i == last_index:
+        continue
+
+      # assign by frame: [cur,nxt] [trd,lst]
+      if cur == 10:             nxt = 0
+      elif last_index - i >= 1: nxt = self._scores[i+1]
+      else:                     nxt = 0
+      if   last_index - i >= 2: trd = self._scores[i+2]
+      else:                     trd = 0
+      if   last_index - i >= 3: lst = self._scores[i+3]
+      else:                     lst = 0
+
+      # score *this* frame according to rules
+      if cur == 10: # strike
+        self._total_score += cur + nxt + trd + lst
+      elif cur + nxt == 10: # spare
+        self._total_score += cur + nxt + trd
+      else: # open frame
+        self._total_score += cur + nxt
+
     self._scored = True
-    return 1
+    return self._total_score
