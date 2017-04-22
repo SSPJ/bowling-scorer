@@ -6,6 +6,14 @@
 
 ## Usage
 
+''Python - interactive ''
+
+''Python - run tests ''
+
+''Haskell - interactive ''
+
+''Haskell - run tests ''
+
 ## Files
 
 /
