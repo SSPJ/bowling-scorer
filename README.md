@@ -1,26 +1,25 @@
-## checklist
-__ tests
-__ compiles
-__ security
-__ error handling
-__ code comments
+## Purpose
 
-## design
+## Dependencies
 
-main.py -- takes in a list of ints, validates them, passes them to module
-BowlScorer.py -- a class which stores a list of rolls and a method to calculate score
-test_BowlScorer.py -- a test suite
+## Installation
 
+## Usage
 
-## functional appr
-map each value to its absolute value
-reduce to single value
-return
+## Files
 
-## questions
-to clarify, the input is a list of integers
-* X and / are not valid input
-* each int represents a single roll, not a single frame
+/
+|--functional
+|  |--
+|
+|--objectional
+   |-- main.py              - user interface
+   |-- bowl_scorer.py       - class for bowling game object
+   |-- test_bowl_scorer.py  - test cases
 
+## Tools and References
 
-you mentioned databases, 
+* https://www.thoughtco.com/bowling-scoring-420895
+  detailed instructions for the game of bowling
+* http://bowlinggenius.com/
+  used to generate test cases
