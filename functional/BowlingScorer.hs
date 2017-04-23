@@ -38,7 +38,17 @@ score ((a,b):(c,d):xs)
     | otherwise = (a + b)     : score ((c,d):xs)
     where     u = fst $ head xs
 
+-- validate takes a list of Ints and returns Nothing
+-- if it is longer than 21 or contains Ints > 10 or < 0
+validate :: [Int] -> Maybe [Int]
+validate xs
+    | length xs > 21 = Nothing
+    | any (\n -> n > 10 || n <0) xs = Nothing
+    | otherwise = Just xs
 
 -- game takes an Int list of pins knocked down
--- returns an Int bowling score
-game xs = sum . score $ pair xs
+-- returns an Int bowling score if the list is valid
+game :: [Int] -> Maybe Int
+game xs = if null $ validate xs
+          then Nothing
+          else Just . sum . score $ pair xs
