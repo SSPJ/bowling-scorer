@@ -8,6 +8,7 @@ Given a list of pins knocked down per roll, calculate a single bowler's score in
 * pytest 3.0.6
   * https://docs.pytest.org/en/latest/getting-started.html
 * Glasgow Haskell Compiler 7.10.3
+* Test.HUnit (comes with GHC)
 
 Other versions of these may work but have not been tested.
 
