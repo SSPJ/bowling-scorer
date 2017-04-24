@@ -39,6 +39,11 @@ class Game():
   def get_raw_scores(self):
     return self._scores
 
+## The logic in score() is to traverse the list once and
+## for each item, determine if it is the start of a bowling
+## frame. If it is, check what kind of frame it is (strike,
+## spare, open) and score it accordingly.
+
   def score(self):
     # don't recalc if total is up-to-date
     if self._scored == True:
@@ -69,7 +74,7 @@ class Game():
         trd = self._scores[i+1] if last_index - i >= 1 else 0
         lst = self._scores[i+2] if last_index - i >= 2 else 0
       elif cur != 10:
-        nxt = self._scores[i+1]
+        nxt = self._scores[i+1] if last_index - i >= 1 else 0
         trd = self._scores[i+2] if last_index - i >= 2 else 0
         lst = self._scores[i+3] if last_index - i >= 3 else 0
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+## Seamus Johnston, 2017
+
 from bowling_scorer import Game
 import pytest
 
