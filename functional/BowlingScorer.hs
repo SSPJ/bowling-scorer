@@ -47,7 +47,7 @@ validate xs
     | otherwise = Just xs
 
 -- game takes an Int list of pins knocked down
--- returns an Int bowling score if the list is valid
+-- returns Just an Int bowling score if the list is valid
 game :: [Int] -> Maybe Int
 game xs = if null $ validate xs
           then Nothing

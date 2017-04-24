@@ -1,4 +1,5 @@
 module TestBowlingScorer where
+-- Seamus Johnston, 2017
 
 import Test.HUnit
 import BowlingScorer
