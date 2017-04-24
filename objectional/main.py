@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
 
-from bowling_scorer import Game
-import pdb
+## Seamus Johnston, 2017
 
-pdb.set_trace()
-game = [9,0, 8,1, 7,2, 6,3, 5,4, 4,5, 3,6, 2,7, 1,8, 5,4]
-expected = 90
-actual = Game(game).score()
+from bowling_scorer import Game
+from sys import argv,exit,stderr
+
+if __name__ == "__main__":
+  try:
+    our_score = Game(argv[1:]).score()
+  except ValueError:
+    stderr.write("All rolls must be numbers seperated by spaces, eg 10 3 5\n")
+    exit(1)
+  except IndexError:
+    stderr.write("A valid game must have fewer than 21 rolls\n")
+    exit(1)
+
+  print(our_score)
