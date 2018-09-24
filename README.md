@@ -2,6 +2,8 @@
 
 Given a list of pins knocked down per roll, calculate a single bowler's score in a 10 pin game.
 
+Implemented in Python and Haskell to demonstrate functional and object-oriented programming styles.
+
 ### Dependencies
 
 * Python 3.5.2
@@ -41,7 +43,7 @@ $ cd bowling-scorer/functional
 $ runghc TestBowlingScorer.hs
 ```
 ### Files
-
+```
 /
 |--functional
 |  |-- BowlingScorer.hs       - functions to score a bowling game
@@ -51,10 +53,13 @@ $ runghc TestBowlingScorer.hs
    |-- main.py                - user interface
    |-- bowling_scorer.py      - class for bowling game object
    |-- test_bowling_scorer.py - test cases
-
+```
 ### Tools and References
 
 * https://www.thoughtco.com/bowling-scoring-420895
   * detailed instructions for the game of bowling
 * http://bowlinggenius.com/
   * used to generate test cases
+
+
+**Code ©2018, Seamus Johnston, all rights reserved except as required by upstream licenses**
